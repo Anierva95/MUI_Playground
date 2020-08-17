@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
@@ -58,6 +58,21 @@ export default function Header(props) {
       setValue(value);
     }
 
+  useEffect(() => {
+    // Checking if the value does not match the pathname and fixing it
+    if (window.location.pathname === "/" && value !== 0) {
+      setValue(0);
+    }
+    else if (window.location.pathname === "/services" && value !== 1) {
+      setValue(1);
+    }
+    else if (window.location.pathname === "/revolution" && value !== 2) {
+      setValue(2);
+    }
+    else if (window.location.pathname === "/contact" && value !== 3) {
+      setValue(3);
+    }
+  })
     return(
       <>
         <ElevationScroll>
