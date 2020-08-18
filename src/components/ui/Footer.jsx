@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
       fontSize: ".75em",
       fontFamily: "Arial",
       fontWeight: "bold"
+  },
+  gridItem: {
+      margin: "3em"
   }
 }));
 
@@ -28,43 +31,63 @@ export default function Footer(props) {
 
   return (
     <footer className={classes.footer}>
-      <Grid container direction="row" justify="center" className={classes.footerContainer}>
-          <Grid item>
+      <Grid container direction="row" justify="center" alignItems="baseline" className={classes.footerContainer}>
+          <Grid item className={classes.gridItem}>
               <Grid container direction="column" className={classes.link}>
-                  <Grid item>
-                      Home
-                  </Grid>
-                  <Grid item>
-                      Home
-                  </Grid>
                   <Grid item>
                       Home
                   </Grid>
               </Grid>
           </Grid>
-          <Grid item>
-              <Grid container direction="column" className={classes.link}>
+          <Grid item className={classes.gridItem}>
+              <Grid container direction="column" className={classes.link} spacing={2}>
                   <Grid item>
-                      Home
+                      Services
                   </Grid>
                   <Grid item>
-                      Home
+                      Custom Software Development
                   </Grid>
                   <Grid item>
-                      Home
+                      Mobile App Development
+                  </Grid>
+                  <Grid item>
+                      Website Development
                   </Grid>
               </Grid>
           </Grid>
-          <Grid item>
-              <Grid container direction="column" className={classes.link}>
+          <Grid item className={classes.gridItem}>
+              <Grid container direction="column" className={classes.link} spacing={2}>
                   <Grid item>
-                      Home
+                      The Revolution
                   </Grid>
                   <Grid item>
-                      Home
+                      Vision
                   </Grid>
                   <Grid item>
-                      Home
+                      Technology
+                  </Grid>
+                  <Grid item>
+                      Process
+                  </Grid>
+              </Grid>
+          </Grid>
+          <Grid item className={classes.gridItem}>
+              <Grid container direction="column" className={classes.link} spacing={2}>
+                  <Grid item>
+                      About Us
+                  </Grid>
+                  <Grid item>
+                      History
+                  </Grid>
+                  <Grid item>
+                      Team
+                  </Grid>
+              </Grid>
+          </Grid>
+          <Grid item className={classes.gridItem}>
+              <Grid container direction="column" className={classes.link} spacing={2}>
+                  <Grid item>
+                      Contact Us
                   </Grid>
               </Grid>
           </Grid>
