@@ -50,6 +50,10 @@ const useStyles = makeStyles(theme => ({
     marginRight: "25px",
     fontSize: "1rem",
     textTransform: "none"
+  },
+  Menu: {
+    backgroundColor: theme.palette.common.blue,
+    color: "white"
   }
 }));
 
@@ -129,15 +133,19 @@ export default function Header(props) {
               Free Estimate
             </Button>
             <Menu 
-            id="simple-menu" 
+            id="simple-menu"
+            classes={{paper: classes.Menu}}
             anchorEl={anchorEl} 
             open={open} 
             onClose={handleClose}
             MenuListProps={{onMouseLeave: handleClose}}
+            onChange={handleChange} 
+            elevation={0}
             >
-              <MenuItem component={Link} onClick={handleClose}>Custom Software</MenuItem>
-              <MenuItem component={Link} onClick={handleClose}>Custom Software</MenuItem>
-              <MenuItem component={Link} onClick={handleClose}>Custom Software</MenuItem>
+              <MenuItem to="/customsoftware" component={Link} onClick={() => {handleClose(); setValue(1)}}>Services</MenuItem>
+              <MenuItem to="/customsoftware" component={Link} onClick={() => {handleClose(); setValue(1)}}>Custom Software</MenuItem>
+              <MenuItem to="/customsoftware" component={Link} onClick={() => {handleClose(); setValue(1)}}>Mobile Applications</MenuItem>
+              <MenuItem to="/customsoftware" component={Link} onClick={() => {handleClose(); setValue(1)}}>Website Development</MenuItem>
             </Menu>
             </Toolbar>
 
