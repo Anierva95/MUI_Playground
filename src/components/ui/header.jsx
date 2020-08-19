@@ -7,6 +7,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
 import logo from '../../assets/logo.svg'
@@ -54,11 +56,22 @@ const useStyles = makeStyles(theme => ({
 export default function Header(props) {
 
   const classes = useStyles();
-
   const [value, setValue] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
 
     const handleChange = (e, value) => {
       setValue(value);
+    }
+
+    const handleClick = (e) => {
+      setAnchorEl(e.currentTarget);
+      setOpen(true);
+    }
+
+    const handleClose = e => {
+      setAnchorEl(null);
+      setOpen(false);
     }
 
   useEffect(() => {
@@ -98,14 +111,34 @@ export default function Header(props) {
               indicatorColor="primary"
               >
                 <Tab component={Link} className={classes.tab} label="Home" to="/"/>
-                <Tab component={Link} className={classes.tab} label="Services" to="/services"/>
+
+                <Tab 
+                aria-owns={anchorEl ? "simple-menu" : undefined} 
+                component={Link} 
+                className={classes.tab}
+                aria-haspopup={anchorEl ? "true" : undefined}
+                onMouseOver={(event) => handleClick(event)}
+                label="Services" to="/services"/>
+
+                
                 <Tab component={Link} className={classes.tab} label="About" to="/about"/>
                 <Tab component={Link} className={classes.tab} label="The Revolution" to="/revolution"/>
                 <Tab component={Link} className={classes.tab} label="Contact Us" to="/contact"/>
-                <Button component={Link} variant="contained" to="/estimate" color="secondary" className={classes.button}>
+            </Tabs>
+            <Button component={Link} variant="contained" to="/estimate" color="secondary" className={classes.button}>
               Free Estimate
             </Button>
-            </Tabs>
+            <Menu 
+            id="simple-menu" 
+            anchorEl={anchorEl} 
+            open={open} 
+            onClose={handleClose}
+            MenuListProps={{onMouseLeave: handleClose}}
+            >
+              <MenuItem component={Link} onClick={handleClose}>Custom Software</MenuItem>
+              <MenuItem component={Link} onClick={handleClose}>Custom Software</MenuItem>
+              <MenuItem component={Link} onClick={handleClose}>Custom Software</MenuItem>
+            </Menu>
             </Toolbar>
 
         </AppBar>
