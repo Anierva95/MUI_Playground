@@ -80,9 +80,10 @@ export default function Header(props) {
     setOpen(true);
   };
 
-  const handleMenuItemClick = (e, index) => {
+  const handleMenuItemClick = (e, i) => {
     setAnchorEl(null);
-    setSelectedIndex(index);
+    setOpen(false);
+    setSelectedIndex(i);
   }
 
   const handleClose = (e) => {
@@ -98,21 +99,87 @@ export default function Header(props) {
   ];
 
   useEffect(() => {
-    // Checking if the value does not match the pathname and fixing it
-    if (window.location.pathname === "/" && value !== 0) {
-      setValue(0);
-    } else if (window.location.pathname === "/services" && value !== 1) {
-      setValue(1);
-    } else if (window.location.pathname === "/about" && value !== 2) {
-      setValue(2);
-    } else if (window.location.pathname === "/revolution" && value !== 3) {
-      setValue(3);
-    } else if (window.location.pathname === "/contact" && value !== 4) {
-      setValue(4);
-    } else if (window.location.pathname === "/estimate" && value !== 4) {
-      setValue(4);
+
+    switch(window.location.pathname) {
+      // The window location must match which tab is selected.
+      // Value represents the index of the currently selected tab.
+      case "/":
+        if (value !== 0) {
+          setValue(0);
+        }
+        break;
+      case "/services":
+        if (value !== 1) {
+          setValue(1);
+          setSelectedIndex(0);
+        }
+        break;
+      case "/customsoftware": {
+        if (value !== 1) {
+          setValue(1);
+          setSelectedIndex(1);
+        }
+        break;
+      }
+      case "/mobileapps": {
+        if (value !== 1) {
+          setValue(1);
+          setSelectedIndex(2);
+        }
+        break;
+      }
+      case "/websites": {
+        if (value !== 1) {
+          setValue(1);
+          setSelectedIndex(3);
+        }
+        break;
+      }
+      case "/about": {
+        if (value !== 2) {
+          setValue(2);
+        }
+        break;
+      }
+      case "/revolution": {
+        if (value !== 3) {
+          setValue(3);
+        }
+        break;
+      }
+      case "/contact": {
+        if (value !== 4) {
+          setValue(4);
+        }
+        break;
+      }
+      case "/estimate": {
+        if (value !== 5) {
+          setValue(5);
+        }
+        break;
+      }
+      default: {
+        break;
+      }
     }
+
+    // // Checking if the value does not match the pathname and fixing it
+    // if (window.location.pathname === "/" && value !== 0) {
+    //   setValue(0);
+    // } else if (window.location.pathname === "/services" && value !== 1) {
+    //   setValue(1);
+    // } else if (window.location.pathname === "/about" && value !== 2) {
+    //   setValue(2);
+    // } else if (window.location.pathname === "/revolution" && value !== 3) {
+    //   setValue(3);
+    // } else if (window.location.pathname === "/contact" && value !== 4) {
+    //   setValue(4);
+    // } else if (window.location.pathname === "/estimate" && value !== 4) {
+    //   setValue(4);
+    // }
   }, [value]);
+
   return (
     <>
       <ElevationScroll>
@@ -189,14 +256,15 @@ export default function Header(props) {
               onChange={handleChange}
               elevation={0}
             >
-              {menuOptions.map((option, index )=> {
+              {menuOptions.map((option, i) => {
                 return(
                   <MenuItem 
-                  classes={{ root: classes.MenuItem}}
+                  key={option}
+                  classes={{ root: classes.MenuItem }}
                   to={option.link}
                   component={Link}
-                  onClick={() => {handleClose(); setValue(1); handleMenuItemClick()}}
-                  selected={selectedIndex === index}
+                  onClick={(e) => {handleMenuItemClick(e, i); setValue(1); handleClose()}}
+                  selected={selectedIndex === i && value === 1}
                   >
                   {option.name}
                   </MenuItem>
