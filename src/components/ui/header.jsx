@@ -61,6 +61,18 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       opacity: 1,
     },
+    palette: {
+      common: {
+          blue: `${arcBlue}`,
+          orange: `${arcOrange}`
+      },
+      primary: {
+          main: `${arcBlue}`
+      },
+      secondary: {
+          main: `${arcOrange}`
+      }
+  },
   },
 }));
 
